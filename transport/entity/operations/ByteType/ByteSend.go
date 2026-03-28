@@ -22,7 +22,8 @@ func (b *ByteSend) MarshalBinary() ([]byte, error) {
 }
 
 func (b *ByteSend) UnmarshalBinary(data []byte) (n int, err error) {
-	return 0, nil
+	b.TagSend = 5
+	return 1, nil
 }
 
 func (b *ByteSend) GetTag() (tagByt byte) {

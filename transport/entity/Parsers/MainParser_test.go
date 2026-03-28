@@ -20,11 +20,14 @@ var b3 = ByteType.ByteSend{
 }
 
 func TestMainParseToBinary(t *testing.T) {
-	b := MainParseToBinary([]operations.Operation{
+	b, err := MainParseToBinary([]operations.Operation{
 		&b1,
 		&b2,
 		&b3,
 	})
+	if err != nil {
+		t.Fatal(err)
+	}
 
 	for _, i := range b {
 		println(i)
@@ -34,9 +37,12 @@ func TestMainParseToBinary(t *testing.T) {
 func TestMainParseToStruct(t *testing.T) {
 	b := []byte{5, 5, 5, 5, 5}
 
-	ops := MainParseToStruct(b)
+	ops, err := MainParseToStruct(b)
+	if err != nil {
+		t.Fatal(err)
+	}
 
 	for _, i := range ops {
-		println(i)
+		println(i.GetTag())
 	}
 }
